@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <!-- <img src = "pesek.jpg"/> -->
+        <h1>
+            welcome to my paradise <%= username %> 
+        </h1>
+
+        <ul>
+            <% form(let i= 0 ; i<data.length; i++){ %>
+                <li>
+                    <%= data[i].name %> | <%= data[i].age %>
+
+                </li>
+            <% } %>
+        </ul>
+
+        <form action='/data' method='POST'>
+           name <input type='text' name= 'carName'/>
+            model <input type='text' name= 'carModel'/>
+            <button>submit</button>
+        </form>            
+    </body>
+</html>
