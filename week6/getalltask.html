@@ -1,0 +1,59 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<a href="/">home</a>
+
+<a href="/newtask">addtask</a>
+
+<head>
+    <style>
+        table,th,td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table id="t01">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                assign to 
+            </th>
+            <th>
+               Due Date
+            </th>
+            <th>
+                description
+             </th>
+             <th>
+                status
+            </th>
+        </tr>
+        <% for (let i = 0; i< week5.length; i++){ %>
+            <tr>
+                    <td>
+                        <%= week5[i].taskname %>
+                    </td>
+                    <td>
+                        <%= week5[i].assign %>
+                    </td>                      
+                    <td>
+                        <%= week5[i].taskduedate %>
+                    </td>                    
+                    <td>
+                        <%= week5[i].description %>
+                    </td>
+                    <td>
+                        <%= week5[i].status %>
+                    </td>                    
+            </tr>
+            
+        <% } %>
+
+    
+    </table>
+    
+</body>
