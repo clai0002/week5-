@@ -47,6 +47,7 @@ app.get("/newtask",function(req,res){
 
 app.post("/addmytask",function(req,res){
     let taskDetails = req.body;
+    taskDetails.taskID = getNewId()
     col.insertOne(taskDetails);
     res.redirect("/getalltask");
 });
@@ -61,10 +62,18 @@ app.get('/getalltask', function (req, res) {
         }
     })
 })
-app.get('/delete/:id',function(req,res){
-    col.deleteOne({
-        id : req.params.id
+app.post('/deletemyid',function(req,res){
+    let taskDetails = req.body
+    let ID = parseInt(taskDetails.taskID)
+    col.deleteMany({
+        taskID : ID
     });
+    res.redirect('/getalltask')
+})
+
+app.get('/deleteID',function(req,res){
+    let fileName = viewsPath + "/deleteID.html"
+    res.sendFile(fileName);
 })
 
 app.get('/deleteCompleted',function(req,res){
@@ -74,4 +83,20 @@ app.get('/deleteCompleted',function(req,res){
     res.redirect('/getalltask');
 })
 
+app.get('/updateTask',function(req,res){
+    let fileName = viewsPath + "/updateTask.html"
+    res.sendFile(fileName);
+})
+
+app.post('/updatemytask',function(req,res){
+    let taskDetails= req.body
+    col.updateOne({taskID: parseInt(taskDetails.taskID)},{$set:{status : taskDetails.status}},{ upsert: true }, function (err, result) {
+    });
+    res.redirect('/getalltask')
+})
+
 app.listen(8080)
+
+function getNewId() {
+    return (Math.floor(100000 + Math.random() * 900000));
+}

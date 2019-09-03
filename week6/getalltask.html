@@ -3,8 +3,9 @@
 </head>
 
 <a href="/">home</a>
-
+<a href="/updateTask">update task</a>
 <a href="/newtask">addtask</a>
+<a href="/deleteID">delete ID</a>
 
 <head>
     <style>
@@ -16,6 +17,9 @@
 <body>
     <table id="t01">
         <tr>
+            <th>
+                ID
+           </th>
             <th>
                 Name
             </th>
@@ -34,6 +38,9 @@
         </tr>
         <% for (let i = 0; i< week5.length; i++){ %>
             <tr>
+                    <td>
+                        <%= week5[i].taskID %>
+                    </td>                
                     <td>
                         <%= week5[i].taskname %>
                     </td>
