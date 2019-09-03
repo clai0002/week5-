@@ -100,3 +100,16 @@ app.listen(8080)
 function getNewId() {
     return (Math.floor(100000 + Math.random() * 900000));
 }
+// extra task
+app.get("/findNotTommorrow",function(req,res){
+    let query = {taskduedate: {$gt: "2019-09-04" }};
+    let fileName =  viewsPath + "/getalltask.html" 
+    db.collection('week5').find(query).toArray(function (err, result) {
+        if (err) {
+            res.redirect('/404');
+        } else {
+            res.render(fileName, { week5 : result })
+            console.log(result)
+        }
+    })
+})
