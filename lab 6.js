@@ -102,7 +102,7 @@ function getNewId() {
 }
 // extra task
 app.get("/findNotTommorrow",function(req,res){
-    let query = {taskduedate: {$gt: "2019-09-04" }};
+    let query = {taskduedate: {$ne: "2019-09-04" }};
     let fileName =  viewsPath + "/getalltask.html" 
     db.collection('week5').find(query).toArray(function (err, result) {
         if (err) {
